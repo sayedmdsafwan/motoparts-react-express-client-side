@@ -3,7 +3,6 @@ import reactImage from "../../images/react-image.jpg";
 import reactRouterImage from "../../images/react-router-image.jpg";
 import reactUnitTest from "../../images/react-unit-test.jpg";
 import inheritancePro from "../../images/Prototypal-Inheritance.jpg";
-import Blog from "./Blog";
 
 const Blogs = () => {
     const blogsContent = [
@@ -37,7 +36,15 @@ const Blogs = () => {
         <div className="max-w-7xl mx-auto py-24 px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 {blogsContent.map((blog) => (
-                    <Blog key={blog.id} blog={blog} />
+                    <div className="card card-compact bg-base-100 shadow-xl">
+                        <figure>
+                            <img src={blog.img} alt="" />
+                        </figure>
+                        <div className="card-body">
+                            <h2 className="card-title">{blog.title}</h2>
+                            <p>{blog.description}</p>
+                        </div>
+                    </div>
                 ))}
             </div>
         </div>
