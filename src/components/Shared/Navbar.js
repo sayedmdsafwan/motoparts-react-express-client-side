@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../../images/logo.png";
 
 const Navbar = () => {
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-200">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabindex="0" className="btn btn-ghost lg:hidden">
@@ -37,7 +38,9 @@ const Navbar = () => {
                         </li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                <Link to="/">
+                    <img src={logo} alt="" />
+                </Link>
             </div>
             <div className="navbar-end hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">

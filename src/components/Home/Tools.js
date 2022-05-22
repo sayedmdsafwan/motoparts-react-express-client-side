@@ -1,7 +1,7 @@
 import React from "react";
 
 const Tools = () => {
-    return <div>Tools</div>;
+    return <div id="tools">Tools</div>;
 };
 
 export default Tools;
