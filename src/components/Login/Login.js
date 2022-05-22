@@ -7,17 +7,19 @@ import {
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Login = () => {
     const [signInWithGoogle, gUser, gLoading, gError] =
         useSignInWithGoogle(auth);
     const [signInWithEmailAndPassword, user, loading, error] =
         useSignInWithEmailAndPassword(auth);
-    const [sendPasswordResetEmail, sending, resetError] =
-        useSendPasswordResetEmail(auth);
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
     const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     const {
         register,
@@ -36,9 +38,9 @@ const Login = () => {
         const email = getValues("email");
         if (email) {
             await sendPasswordResetEmail(email);
-            alert("Sent email");
+            toast.success("Sent email");
         } else {
-            alert("Please enter your email address");
+            toast.error("Please enter your email address");
         }
     };
 
@@ -56,11 +58,11 @@ const Login = () => {
     }
 
     if (user || gUser) {
-        navigate("/");
+        navigate(from, { replace: true });
     }
 
     return (
-        <div className="flex justify-center items-center h-screen">
+        <div className="flex justify-center items-center min-h-screen">
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
                     <h2 className="text-2xl text-center">Login</h2>
