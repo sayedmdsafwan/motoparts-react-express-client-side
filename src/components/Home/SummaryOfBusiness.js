@@ -20,9 +20,9 @@ const SummaryOfBusiness = () => {
                             ></path>
                         </svg>
                     </div>
-                    <div className="stat-title">Parts</div>
+                    <div className="stat-title">Tools</div>
                     <div className="stat-value">867</div>
-                    <div className="stat-desc">Jan 1st - Feb 1st</div>
+                    <div className="stat-desc">Aluminium/SS</div>
                 </div>
 
                 <div className="stat">
@@ -41,8 +41,8 @@ const SummaryOfBusiness = () => {
                             ></path>
                         </svg>
                     </div>
-                    <div className="stat-title">New Users</div>
-                    <div className="stat-value">4,200</div>
+                    <div className="stat-title">Total Manufactured</div>
+                    <div className="stat-value">4,2M</div>
                     <div className="stat-desc">↗︎ 400 (22%)</div>
                 </div>
 
@@ -62,8 +62,8 @@ const SummaryOfBusiness = () => {
                             ></path>
                         </svg>
                     </div>
-                    <div className="stat-title">New Registers</div>
-                    <div className="stat-value">1,200</div>
+                    <div className="stat-title">Parts Br. Rate</div>
+                    <div className="stat-value">2%</div>
                     <div className="stat-desc">↘︎ 90 (14%)</div>
                 </div>
             </div>
