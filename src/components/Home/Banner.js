@@ -4,7 +4,7 @@ import bannerImage from "../../images/banner-image.png";
 const Banner = () => {
     return (
         <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex-col lg:flex-row gap-10 lg:gap-32">
+            <div className="hero-content max-w-6xl mx-auto flex-col lg:flex-row gap-10 lg:gap-32">
                 <div>
                     <h1 className="text-5xl  uppercase">
                         Trust on our quality!

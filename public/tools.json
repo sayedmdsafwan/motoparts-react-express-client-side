@@ -1,0 +1,38 @@
+[
+    {
+        "_id": 1,
+        "name": "Clutch Lever",
+        "img": "https://i.ibb.co/PTTdMD3/clutch-lever.jpg",
+        "description": "A mechanism uses the rider's pull on the clutch lever to lift the pressure plate against its spring pressure, separating the friction and steel plates.",
+        "min": 500,
+        "quantity": 1000,
+        "price": 5000
+    },
+    {
+        "_id": 2,
+        "name": "Clutchplate",
+        "img": "https://i.ibb.co/k3h2R5c/clutch-plate.jpg",
+        "description": "The drive plate is the interface between the clutch basket and the pressure plate. The driven plate is the interface between the pressure plate and the clutch hub.",
+        "min": 500,
+        "quantity": 1000,
+        "price": 5000
+    },
+    {
+        "_id": 3,
+        "name": "Disk Brake",
+        "img": "https://i.ibb.co/pyQy0Vh/disk-brake.jpg",
+        "description": "Hydraulic discs feature a closed system of hoses and reservoirs containing special hydraulic fluid to operate the brakes.",
+        "min": 500,
+        "quantity": 1000,
+        "price": 5000
+    },
+    {
+        "_id": 4,
+        "name": "Suspension",
+        "img": "https://i.ibb.co/3sNY5t7/suspension.jpg",
+        "description": "Bike suspension is the system, or systems, used to suspend the rider and bike in order to insulate them from the roughness of the terrain.",
+        "min": 500,
+        "quantity": 1000,
+        "price": 5000
+    }
+]

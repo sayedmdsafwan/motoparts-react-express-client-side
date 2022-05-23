@@ -45,7 +45,7 @@ const Blogs = () => {
     ];
 
     return (
-        <div className="max-w-7xl mx-auto py-24 px-8">
+        <div className="max-w-6xl mx-auto py-24 px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 {blogsContent.map((blog) => (
                     <div className="card card-compact bg-base-100 shadow-xl">

@@ -5,7 +5,7 @@ import building3 from "../../images/building3.jpg";
 
 const ReviewsOfCompany = () => {
     return (
-        <div className="my-24 max-w-7xl mx-auto px-8">
+        <div className="my-24 max-w-6xl mx-auto px-8">
             <div>
                 <h2 className="text-center text-3xl text-primary">
                     Reviews From Our Buyers
