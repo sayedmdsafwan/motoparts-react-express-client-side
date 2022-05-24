@@ -11,6 +11,8 @@ import Footer from "./components/Shared/Footer";
 import Navbar from "./components/Shared/Navbar";
 import Dashboard from "./components/Dashboard/Dashboard";
 import RequireAuth from "./components/Login/RequireAuth";
+import AllProducts from "./components/Home/Tools/AllProducts";
+import Purchase from "./components/Purchase/Purchase";
 
 function App() {
     return (
@@ -18,10 +20,20 @@ function App() {
             <Navbar />
             <Routes>
                 <Route path="/" element={<Home />}></Route>
+                <Route path="/home" element={<Home />}></Route>
                 <Route path="/myportfolio" element={<MyPortfolio />}></Route>
                 <Route path="/blogs" element={<Blogs />}></Route>
+                <Route path="/alltools" element={<AllProducts />}></Route>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/signup" element={<SignUp />}></Route>
+                <Route
+                    path="/purchase"
+                    element={
+                        <RequireAuth>
+                            <Purchase />
+                        </RequireAuth>
+                    }
+                ></Route>
                 <Route
                     path="/dashboard"
                     element={

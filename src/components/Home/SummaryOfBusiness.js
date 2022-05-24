@@ -2,8 +2,8 @@ import React from "react";
 
 const SummaryOfBusiness = () => {
     return (
-        <div className="max-w-5xl mx-auto mb-10 flex justify-center">
-            <div className="stats shadow">
+        <div className="max-w-5xl mx-auto px-8 mb-10 flex justify-center">
+            <div className="lg:stats shadow">
                 <div className="stat">
                     <div className="stat-figure text-secondary">
                         <svg
@@ -20,7 +20,7 @@ const SummaryOfBusiness = () => {
                             ></path>
                         </svg>
                     </div>
-                    <div className="stat-title">Tools</div>
+                    <div className="stat-title">Tools Geometry</div>
                     <div className="stat-value">867</div>
                     <div className="stat-desc">Aluminium/SS</div>
                 </div>
@@ -62,7 +62,7 @@ const SummaryOfBusiness = () => {
                             ></path>
                         </svg>
                     </div>
-                    <div className="stat-title">Parts Br. Rate</div>
+                    <div className="stat-title">Parts Breakdown Rate</div>
                     <div className="stat-value">2%</div>
                     <div className="stat-desc">↘︎ 90 (14%)</div>
                 </div>
