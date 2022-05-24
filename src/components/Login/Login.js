@@ -63,7 +63,7 @@ const Login = () => {
 
     return (
         <div className="flex justify-center items-center min-h-screen">
-            <div className="card w-96 bg-base-100 shadow-xl">
+            <div className="card w-96 my-20 bg-base-100 shadow-xl">
                 <div className="card-body">
                     <h2 className="text-2xl text-center">Login</h2>
 
