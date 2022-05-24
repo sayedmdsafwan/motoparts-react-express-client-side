@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     useCreateUserWithEmailAndPassword,
     useSignInWithGoogle,
     useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import useToken from "../../Hooks/useToken";
 
 import Loading from "../Shared/Loading";
 
@@ -24,13 +25,19 @@ const SignUp = () => {
         reset,
     } = useForm();
 
+    const [token] = useToken(user || gUser);
+
     const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate]);
 
     let signInError;
-
-    if (loading || gLoading || updating) {
-        return <Loading></Loading>;
-    }
 
     if (error || gError || updateError) {
         signInError = (
@@ -48,8 +55,8 @@ const SignUp = () => {
         reset();
     };
 
-    if (user || gUser) {
-        navigate("/");
+    if (loading || gLoading || updating) {
+        return <Loading></Loading>;
     }
     return (
         <div className="flex min-h-screen justify-center items-center">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import auth from "../../firebase.init";
 import {
     useSendPasswordResetEmail,
@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import useToken from "../../Hooks/useToken";
 
 const Login = () => {
     const [signInWithGoogle, gUser, gLoading, gError] =
@@ -17,6 +18,7 @@ const Login = () => {
         useSignInWithEmailAndPassword(auth);
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
+    const [token] = useToken(user || gUser);
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
@@ -33,6 +35,12 @@ const Login = () => {
         signInWithEmailAndPassword(data.email, data.password);
         reset();
     };
+
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate]);
 
     const resetYourPassword = async () => {
         const email = getValues("email");
@@ -55,10 +63,6 @@ const Login = () => {
 
     if (loading || gLoading || sending) {
         return <Loading />;
-    }
-
-    if (user || gUser) {
-        navigate(from, { replace: true });
     }
 
     return (

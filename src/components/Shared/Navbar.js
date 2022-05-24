@@ -10,12 +10,13 @@ const Navbar = () => {
 
     const logout = () => {
         signOut(auth);
+        localStorage.removeItem("accessToken");
     };
 
     const menuItems = (
         <>
             <li>
-                <Link to="/home">Home</Link>
+                <Link to="/">Home</Link>
             </li>
             <li>
                 <Link to="/myportfolio">My Portfolio</Link>
