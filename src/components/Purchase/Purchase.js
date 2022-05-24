@@ -1,16 +1,26 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
-import useToolDetails from "../../Hooks/useToolDetails";
+
+import Loading from "../Shared/Loading";
 
 const Purchase = () => {
     const { toolId } = useParams();
-    const [toolDetails] = useToolDetails(toolId);
+    // const [toolDetails, setToolDetails] = useToolDetails(toolId);
     const [user] = useAuthState(auth);
-    const { /* _id, */ name, price, min, description, img, quantity } =
-        toolDetails;
+    // const { name, price, min, description, img, quantity } = toolDetails;
+
+    const {
+        data: toolDetails,
+        isLoading,
+        refetch,
+    } = useQuery(["booking", toolId], () =>
+        fetch(`http://localhost:4000/tool/${toolId}`).then((res) => res.json())
+    );
 
     const {
         register,
@@ -20,28 +30,65 @@ const Purchase = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data);
-        reset();
+        const booking = {
+            toolName: toolDetails.name,
+            toolId,
+            buyer: user.email,
+            buyerName: user.displayName,
+            address: data.address,
+            phone: data.phone,
+            quantity: data.quantity,
+        };
+
+        fetch("http://localhost:4000/booking", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(booking),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.success) {
+                    toast(`Order is set`);
+                } else {
+                    toast.error(`Already ordered this product`);
+                }
+                refetch();
+                reset();
+            });
+
+        console.log(booking);
     };
+
+    if (isLoading) {
+        return <Loading />;
+    }
 
     return (
         <div className="max-w-6xl mx-auto min-h-screen">
             <div className="grid lg:grid-cols-9 grid-cols-1 justify-items-center py-24">
                 <div className="card max-w-sm bg-base-100 shadow-xl col-span-4">
                     <figure>
-                        <img src={img} alt={name} />
+                        <img src={toolDetails.img} alt={toolDetails.name} />
                     </figure>
                     <div className="card-body">
-                        <h2 className="text-2xl font-light">{name}</h2>
-                        <p className="text-gray-600">{description}</p>
+                        <h2 className="text-2xl font-light">
+                            {toolDetails.name}
+                        </h2>
+                        <p className="text-gray-600">
+                            {toolDetails.description}
+                        </p>
                         <div className="flex justify-between text-secondary">
-                            <small>Minimum Order: {min}</small>
-                            <small>Quantity: {quantity}</small>
+                            <small>Minimum Order: {toolDetails.min}</small>
+                            <small>Quantity: {toolDetails.quantity}</small>
                         </div>
-                        <p className="text-primary">Price: ${price}</p>
+                        <p className="text-primary">
+                            Price: ${toolDetails.price}
+                        </p>
                     </div>
                 </div>
-                <div class="divider divider-horizontal">OR</div>
+                <div className="divider divider-horizontal">OR</div>
                 <div className="col-span-4">
                     <div className="card w-96 bg-base-100 shadow-xl">
                         <h2 className="text-2xl text-center font-light mt-6">
@@ -65,7 +112,7 @@ const Purchase = () => {
                                         {...register("email")}
                                     />
                                 </div>
-                                <div className="form-control my-4 w-80">
+                                <div className="form-control mt-4 w-80">
                                     <input
                                         className="input input-bordered w-80"
                                         placeholder="Address"
@@ -73,8 +120,16 @@ const Purchase = () => {
                                             required: true,
                                         })}
                                     />
+                                    <label className="label">
+                                        {errors.address?.type ===
+                                            "required" && (
+                                            <span className="label-text-alt text-red-500">
+                                                Address is required.
+                                            </span>
+                                        )}
+                                    </label>
                                 </div>
-                                <div className="form-control my-4 w-80">
+                                <div className="form-control w-80">
                                     <input
                                         type="text"
                                         placeholder="Phone"
@@ -83,27 +138,35 @@ const Purchase = () => {
                                             required: true,
                                         })}
                                     />
+                                    <label className="label">
+                                        {errors.phone?.type === "required" && (
+                                            <span className="label-text-alt text-red-500">
+                                                Phone is required.
+                                            </span>
+                                        )}
+                                    </label>
                                 </div>
-                                <div className="form-control my-4 w-80">
+                                <div className="form-control w-80">
                                     <input
                                         type="number"
                                         placeholder="quantity"
                                         className="input input-bordered w-80"
                                         {...register("quantity", {
                                             required: true,
-                                            min: min,
-                                            max: quantity,
+                                            min: toolDetails.min,
+                                            max: toolDetails.quantity,
                                         })}
                                     />
                                     <label className="label">
                                         {errors.quantity?.type === "min" && (
                                             <span className="label-text-alt text-red-500">
-                                                Minimum Order {min}
+                                                Minimum Order {toolDetails.min}
                                             </span>
                                         )}
                                         {errors.quantity?.type === "max" && (
                                             <span className="label-text-alt text-red-500">
-                                                Maximum Order {quantity}
+                                                Maximum Order{" "}
+                                                {toolDetails.quantity}
                                             </span>
                                         )}
                                     </label>
