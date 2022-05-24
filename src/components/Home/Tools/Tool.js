@@ -22,7 +22,7 @@ const Tool = ({ tool }) => {
                     <small>Minimum Order: {min}</small>
                     <small>Quantity: {quantity}</small>
                 </div>
-                <p className="text-primary">Price: ${price}</p>
+                <p className="text-primary">Price: ${price}/unit</p>
                 <div className="card-actions">
                     <button
                         onClick={() => navigateToolDetail(_id)}

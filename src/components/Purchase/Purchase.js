@@ -5,7 +5,6 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
-
 import Loading from "../Shared/Loading";
 
 const Purchase = () => {
@@ -50,15 +49,15 @@ const Purchase = () => {
             .then((res) => res.json())
             .then((data) => {
                 if (data.success) {
-                    toast(`Order is set`);
+                    toast(
+                        `Order is placed. Please go to your dashboard to manage orders.`
+                    );
                 } else {
-                    toast.error(`Already ordered this product`);
+                    toast.error(`Already ordered this product.`);
                 }
                 refetch();
                 reset();
             });
-
-        console.log(booking);
     };
 
     if (isLoading) {
@@ -84,7 +83,7 @@ const Purchase = () => {
                             <small>Quantity: {toolDetails.quantity}</small>
                         </div>
                         <p className="text-primary">
-                            Price: ${toolDetails.price}
+                            Price: ${toolDetails.price}/unit
                         </p>
                     </div>
                 </div>
