@@ -31,13 +31,14 @@ const Purchase = () => {
     const onSubmit = (data) => {
         const booking = {
             toolName: toolDetails.name,
-            toolId,
             buyer: user.email,
             buyerName: user.displayName,
             address: data.address,
             phone: data.phone,
+            price: toolDetails.price,
             quantity: data.quantity,
         };
+        console.log(booking);
 
         fetch("http://localhost:4000/booking", {
             method: "POST",
