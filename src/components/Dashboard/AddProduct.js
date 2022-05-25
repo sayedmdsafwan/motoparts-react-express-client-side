@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const AddProduct = () => {
     const {
@@ -33,6 +34,25 @@ const AddProduct = () => {
                         img: img,
                     };
                     // send to database
+                    fetch("http://localhost:4000/product", {
+                        method: "POST",
+                        headers: {
+                            "content-type": "application/json",
+                            authorization: `Bearer ${localStorage.getItem(
+                                "accessToken"
+                            )}`,
+                        },
+                        body: JSON.stringify(product),
+                    })
+                        .then((res) => res.json())
+                        .then((inserted) => {
+                            if (inserted.insertedId) {
+                                toast.success("Product added successfully");
+                                reset();
+                            } else {
+                                toast.error("Failed to add the Product");
+                            }
+                        });
                 }
             });
     };
