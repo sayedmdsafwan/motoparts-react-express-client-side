@@ -13,14 +13,19 @@ const CheckoutForm = ({ order }) => {
     const { _id, price, buyer, buyerName } = order;
 
     useEffect(() => {
-        fetch("http://localhost:4000/create-payment-intent", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-            body: JSON.stringify({ price }),
-        })
+        fetch(
+            "https://thawing-stream-62063.herokuapp.com/create-payment-intent",
+            {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                    authorization: `Bearer ${localStorage.getItem(
+                        "accessToken"
+                    )}`,
+                },
+                body: JSON.stringify({ price }),
+            }
+        )
             .then((res) => res.json())
             .then((data) => {
                 if (data?.clientSecret) {
@@ -76,7 +81,7 @@ const CheckoutForm = ({ order }) => {
                 appointment: _id,
                 transactionId: paymentIntent.id,
             };
-            fetch(`http://localhost:4000/booking/${_id}`, {
+            fetch(`https://thawing-stream-62063.herokuapp.com/booking/${_id}`, {
                 method: "PATCH",
                 headers: {
                     "content-type": "application/json",

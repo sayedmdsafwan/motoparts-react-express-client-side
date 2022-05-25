@@ -18,7 +18,9 @@ const Purchase = () => {
         isLoading,
         refetch,
     } = useQuery(["booking", toolId], () =>
-        fetch(`http://localhost:4000/tool/${toolId}`).then((res) => res.json())
+        fetch(`https://thawing-stream-62063.herokuapp.com/tool/${toolId}`).then(
+            (res) => res.json()
+        )
     );
 
     const {
@@ -40,7 +42,7 @@ const Purchase = () => {
         };
         console.log(booking);
 
-        fetch("http://localhost:4000/booking", {
+        fetch("https://thawing-stream-62063.herokuapp.com/booking", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

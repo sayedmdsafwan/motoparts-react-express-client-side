@@ -9,7 +9,7 @@ const DeleteConfirmModal = ({
     const { _id, name } = deletingProduct;
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:4000/tool/${id}`, {
+        fetch(`https://thawing-stream-62063.herokuapp.com/tool/${id}`, {
             method: "DELETE",
             headers: {
                 authorization: `Bearer ${localStorage.getItem("accessToken")}`,

@@ -13,7 +13,9 @@ const ManageProducts = () => {
         isLoading,
         refetch,
     } = useQuery("tools", () =>
-        fetch("http://localhost:4000/tools").then((res) => res.json())
+        fetch("https://thawing-stream-62063.herokuapp.com/tools").then((res) =>
+            res.json()
+        )
     );
 
     if (isLoading) {

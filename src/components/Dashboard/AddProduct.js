@@ -34,16 +34,19 @@ const AddProduct = () => {
                         img: img,
                     };
                     // send to database
-                    fetch("http://localhost:4000/product", {
-                        method: "POST",
-                        headers: {
-                            "content-type": "application/json",
-                            authorization: `Bearer ${localStorage.getItem(
-                                "accessToken"
-                            )}`,
-                        },
-                        body: JSON.stringify(product),
-                    })
+                    fetch(
+                        "https://thawing-stream-62063.herokuapp.com/product",
+                        {
+                            method: "POST",
+                            headers: {
+                                "content-type": "application/json",
+                                authorization: `Bearer ${localStorage.getItem(
+                                    "accessToken"
+                                )}`,
+                            },
+                            body: JSON.stringify(product),
+                        }
+                    )
                         .then((res) => res.json())
                         .then((inserted) => {
                             if (inserted.insertedId) {
