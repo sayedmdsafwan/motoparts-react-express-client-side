@@ -4,6 +4,22 @@ import { toast } from "react-toastify";
 const UserRow = ({ user, refetch, index }) => {
     const { email, role } = user;
 
+    const removeUser = (email) => {
+        fetch(`https://thawing-stream-62063.herokuapp.com/user/${email}`, {
+            method: "DELETE",
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.deletedCount) {
+                    toast.success("User removed successfully");
+                    refetch();
+                }
+            });
+    };
+
     const makeAdmin = () => {
         fetch(
             `https://thawing-stream-62063.herokuapp.com/user/admin/${email}`,
@@ -42,7 +58,12 @@ const UserRow = ({ user, refetch, index }) => {
                 )}
             </td>
             <td>
-                <button className="btn btn-xs">Remove User</button>
+                <button
+                    onClick={() => removeUser(email)}
+                    className="btn btn-xs btn-error text-white"
+                >
+                    Remove User
+                </button>
             </td>
         </tr>
     );

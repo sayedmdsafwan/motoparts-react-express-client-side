@@ -2,15 +2,19 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
+import useAdmin from "../../Hooks/useAdmin";
+import Dashboard from "../Dashboard/Dashboard";
 import Loading from "../Shared/Loading";
 
 const Purchase = () => {
+    const [user] = useAuthState(auth);
+    const [admin] = useAdmin(user);
+    const navigate = useNavigate();
     const { toolId } = useParams();
     // const [toolDetails, setToolDetails] = useToolDetails(toolId);
-    const [user] = useAuthState(auth);
     // const { name, price, min, description, img, quantity } = toolDetails;
 
     const {
@@ -65,6 +69,16 @@ const Purchase = () => {
 
     if (isLoading) {
         return <Loading />;
+    }
+
+    if (admin) {
+        return (
+            <>
+                {navigate("/")}
+
+                {toast.error("Admin can't purchase any product")}
+            </>
+        );
     }
 
     return (
