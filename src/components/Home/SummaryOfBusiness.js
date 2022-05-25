@@ -2,7 +2,7 @@ import React from "react";
 
 const SummaryOfBusiness = () => {
     return (
-        <div className="max-w-5xl mx-auto px-8 mb-10 flex justify-center">
+        <div className="max-w-5xl mx-auto px-8 mt-20 flex justify-center">
             <div className="lg:stats shadow">
                 <div className="stat">
                     <div className="stat-figure text-secondary">
