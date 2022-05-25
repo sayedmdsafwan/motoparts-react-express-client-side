@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "react-query";
 import Loading from "../Shared/Loading";
 import ProductsRow from "./ProductsRow";
 
 const ManageProducts = () => {
     // const [tools] = useTools();
-    const [deletingProduct, setDeletingProduct] = useState(null);
 
     const {
         data: tools,
@@ -22,11 +21,12 @@ const ManageProducts = () => {
     return (
         <div>
             <h2 className="text-2xl mb-4">Manage Products {tools.length}</h2>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
+                            <th>Image</th>
                             <th>Name</th>
                             <th>Price</th>
                             <th>Action</th>
@@ -39,7 +39,6 @@ const ManageProducts = () => {
                                 tool={tool}
                                 index={index}
                                 refetch={refetch}
-                                setDeletingProduct={setDeletingProduct}
                             />
                         ))}
                     </tbody>
