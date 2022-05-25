@@ -9,9 +9,12 @@ const Tools = () => {
     return (
         <>
             <div className="max-w-6xl mx-auto">
+                <h2 className="text-3xl text-primary mt-10 text-center">
+                    Tools
+                </h2>
                 <div
                     id="tools"
-                    className="grid grid-cols-1 pt-20 justify-items-center md:grid-cols-2 lg:grid-cols-3 gap-10"
+                    className="grid grid-cols-1 pt-10 justify-items-center md:grid-cols-2 lg:grid-cols-3 gap-10"
                 >
                     {tools
                         .map((tool) => <Tool key={tool._id} tool={tool} />)
