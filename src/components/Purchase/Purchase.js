@@ -38,7 +38,7 @@ const Purchase = () => {
             buyerName: user.displayName,
             address: data.address,
             phone: data.phone,
-            price: toolDetails.price,
+            price: toolDetails.price * data.quantity,
             quantity: data.quantity,
         };
         console.log(booking);
