@@ -48,7 +48,8 @@ const ReviewsOfCompany = () => {
                             </div>
                         </div>
                     ))
-                    .reverse()}
+                    .reverse()
+                    .slice(0, 3)}
             </div>
             <Link to="/allreview">
                 <button className="block mx-auto btn btn-outline btn-primary">
