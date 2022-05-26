@@ -6,7 +6,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import useAdmin from "../../Hooks/useAdmin";
-import Dashboard from "../Dashboard/Dashboard";
 import Loading from "../Shared/Loading";
 
 const Purchase = () => {
@@ -14,8 +13,6 @@ const Purchase = () => {
     const [admin] = useAdmin(user);
     const navigate = useNavigate();
     const { toolId } = useParams();
-    // const [toolDetails, setToolDetails] = useToolDetails(toolId);
-    // const { name, price, min, description, img, quantity } = toolDetails;
 
     const {
         data: toolDetails,

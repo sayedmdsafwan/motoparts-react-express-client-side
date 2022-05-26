@@ -1,71 +1,49 @@
 import React from "react";
-import building1 from "../../images/building1.jpg";
-import building2 from "../../images/building2.jpg";
-import building3 from "../../images/building3.jpg";
+import { useQuery } from "react-query";
+import Loading from "../Shared/Loading";
+import { FaQuoteLeft } from "react-icons/fa";
 
 const ReviewsOfCompany = () => {
+    const { data: reviews, isLoading } = useQuery("reviews", () =>
+        fetch("http://localhost:4000/reviews").then((res) => res.json())
+    );
+
+    if (isLoading) {
+        return <Loading />;
+    }
+
     return (
         <div className="my-24 max-w-6xl mx-auto px-8">
             <div>
                 <h2 className="text-center text-3xl text-primary">
-                    Reviews From Our Buyers
+                    Reviews From Our Buyers {reviews.length}
                 </h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center my-10">
-                <div className="card max-w-md bg-base-100 shadow-xl">
-                    <figure className="px-10 pt-10">
-                        <img
-                            src={building1}
-                            alt="Shoes"
-                            className="rounded-xl"
-                        />
-                    </figure>
-                    <div className="card-body items-center text-center">
-                        <h2 className="card-title">An Corp.</h2>
-                        <p>
-                            We ordered 3000 pieces of clatchplate of dirt bike.
-                            We used them over a year and 98% of them are in good
-                            position. We are happy to work with this
-                            manufacturer.{" "}
-                        </p>
+                {reviews.map((review, index) => (
+                    <div
+                        key={index}
+                        className="card max-w-sm text-center bg-base-100 shadow-xl"
+                    >
+                        <div className="card-body">
+                            <FaQuoteLeft
+                                className="text-gray-300 block mx-auto"
+                                size={55}
+                            />
+
+                            <p className="tracking-wide my-4">
+                                {review.review}
+                            </p>
+                            <h3 className="text-2xl text-gray-500 tracking-wider">
+                                - <span className="italic">{review.name}</span>
+                            </h3>
+                            <p className="text-secondary">
+                                Rating: {review.rating}/5
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div className="card max-w-md bg-base-100 shadow-xl">
-                    <figure className="px-10 pt-10">
-                        <img
-                            src={building2}
-                            alt="Shoes"
-                            className="rounded-xl"
-                        />
-                    </figure>
-                    <div className="card-body items-center text-center">
-                        <h2 className="card-title">Mikdad Motors</h2>
-                        <p>
-                            We used their motor disc brake for 2 years. We
-                            already bought 10000 thousand pieces of petal disk
-                            from them. We are happy to work with this
-                            manufacturer.{" "}
-                        </p>
-                    </div>
-                </div>
-                <div className="card max-w-md bg-base-100 shadow-xl">
-                    <figure className="px-10 pt-10">
-                        <img
-                            src={building3}
-                            alt="Shoes"
-                            className="rounded-xl"
-                        />
-                    </figure>
-                    <div className="card-body items-center text-center">
-                        <h2 className="card-title">Moto BD</h2>
-                        <p>
-                            They always try to maintain the quality. We ordered
-                            5000 pieces of tire. We used them over a year. We
-                            are happy to work with this manufacturer.{" "}
-                        </p>
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
     );
