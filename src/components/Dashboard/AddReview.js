@@ -26,7 +26,7 @@ const AddReview = () => {
             review: data.review,
             rating: data.rating,
         };
-        fetch("http://localhost:4000/review", {
+        fetch("https://thawing-stream-62063.herokuapp.com/review", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
