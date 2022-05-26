@@ -22,7 +22,7 @@ const Users = () => {
 
     return (
         <div>
-            <h2 className="text-2xl mb-8">All Users: {users.length}</h2>
+            <h2 className="text-2xl mb-8">Make Admin: {users.length}</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>

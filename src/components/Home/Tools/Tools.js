@@ -23,6 +23,7 @@ const Tools = () => {
                 >
                     {tools
                         .map((tool) => <Tool key={tool._id} tool={tool} />)
+                        .reverse()
                         .slice(0, 3)}
                 </div>
             </div>

@@ -118,7 +118,7 @@ const CheckoutForm = ({ order }) => {
                     }}
                 />
                 <button
-                    className="btn btn-success text-white btn-sm mt-4"
+                    className="btn btn-primary text-white btn-sm mt-4"
                     type="submit"
                     disabled={!stripe || !clientSecret || success}
                 >
@@ -127,7 +127,7 @@ const CheckoutForm = ({ order }) => {
             </form>
             {cardError && <p className="text-red-500">{cardError}</p>}
             {success && (
-                <div className="text-green-500">
+                <div className="text-primary">
                     <p>{success} </p>
                     <p>
                         Your transaction Id:{" "}
