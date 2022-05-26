@@ -6,7 +6,6 @@ import ProductsRow from "./ProductsRow";
 
 const ManageProducts = () => {
     const [deletingProduct, setDeletingProduct] = useState(null);
-    // const [tools] = useTools();
 
     const {
         data: tools,

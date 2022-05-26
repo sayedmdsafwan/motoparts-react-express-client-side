@@ -1,9 +1,14 @@
 import React from "react";
 import useTools from "../../../Hooks/useTools";
+import Loading from "../../Shared/Loading";
 import Tool from "./Tool";
 
 const AllProducts = () => {
-    const [tools] = useTools();
+    const [tools, loading] = useTools();
+
+    if (loading) {
+        return <Loading />;
+    }
 
     return (
         <div className="max-w-6xl mx-auto mb-20">

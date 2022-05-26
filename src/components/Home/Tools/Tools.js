@@ -1,10 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useTools from "../../../Hooks/useTools";
+import Loading from "../../Shared/Loading";
 import Tool from "./Tool";
 
 const Tools = () => {
-    const [tools] = useTools();
+    const [tools, loading] = useTools();
+
+    if (loading) {
+        return <Loading />;
+    }
 
     return (
         <>
