@@ -6,10 +6,9 @@
 
 Procedure To Make This Project:
 
--   First I code the server side.
--   I use postman to verify my api's.
--   Then I design the front end of the website.
--   After that, I added the functionality.
+-   MotoPartsBD is a website of a motorbike parts manufacturer.
+-   Technology Used:  ReactJs,  React Router,  ExpressJs,  MongoDB,  API, Authentication, etc.
+-   Dashboard for buyer and admin, Full stack application
 -   After finishing, I push the code to github, heroku, and firebase.
 
 That's all!
